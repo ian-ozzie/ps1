@@ -187,7 +187,7 @@ __ps1_git_fancy () {
     fi
 
     local -a git_status_fields
-    git_status_fields=($("${HOME}/.ps1/gitstatus.sh" 2>/dev/null))
+    git_status_fields=($("${HOME}/.ps1/bash-git-prompt/gitstatus.sh" 2>/dev/null))
 
     local GIT_BRANCH=$(__ps1_git_fancy_replaceSymbols ${git_status_fields[0]})
     local GIT_REMOTE="$(__ps1_git_fancy_replaceSymbols ${git_status_fields[1]})"
