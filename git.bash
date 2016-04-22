@@ -209,7 +209,7 @@ __ps1_git_fancy () {
     local GIT_STASHED=${git_status_fields[7]}
     local GIT_CLEAN=${git_status_fields[8]}
 
-    local STATUS="${PS1_MODULE_GIT_PROMPT_BRANCH}${GIT_BRANCH}${ResetColour}"
+    local STATUS="${PS1_MODULE_GIT_PROMPT_BRANCH}${GIT_BRANCH}${ResetColor}"
 
     __chk_gitvar_status() {
         local v
@@ -220,9 +220,9 @@ __ps1_git_fancy () {
         fi
         if eval "test $v" ; then
             if [[ $# -lt 2 || "$3" != '-' ]]; then
-                __add_status "\$PS1_MODULE_GIT_PROMPT_$1\$GIT_$1\$PS1_MODULE_GIT_SYMBOL_$1\$ResetColour"
+                __add_status "\$PS1_MODULE_GIT_PROMPT_$1\$GIT_$1\$PS1_MODULE_GIT_SYMBOL_$1\$ResetColor"
             else
-                __add_status "\$PS1_MODULE_GIT_PROMPT_$1\$PS1_MODULE_GIT_SYMBOL_$1\$ResetColour"
+                __add_status "\$PS1_MODULE_GIT_PROMPT_$1\$PS1_MODULE_GIT_SYMBOL_$1\$ResetColor"
             fi
         fi
     }
@@ -240,7 +240,7 @@ __ps1_git_fancy () {
     __chk_gitvar_status 'UNTRACKED'  '-ne 0'
     __chk_gitvar_status 'STASHED'    '-ne 0'
     __chk_gitvar_status 'CLEAN'      '-eq 1'   -
-    __add_status        "$ResetColour$GIT_PROMPT_SUFFIX"
+    __add_status        "$ResetColor$GIT_PROMPT_SUFFIX"
 
     echo $STATUS
 }

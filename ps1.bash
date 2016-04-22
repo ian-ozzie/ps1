@@ -70,7 +70,7 @@ function set_prompt_command {
     PS1=""
 
     if [[ $PS1_MODULE_SMILEY -eq 1 ]]; then
-        PS1+="$(__ps1_smiley $prev_exit_code $Green $Red $ResetColour) "
+        PS1+="$(__ps1_smiley $prev_exit_code $Green $Red $ResetColor) "
     fi
 
     local ps1_user="${COL1}\u"
@@ -82,7 +82,7 @@ function set_prompt_command {
         for lang in ruby node python go; do
             local showenv=$(__ps1_showenv $lang)
             if [ ! -z "$showenv" ]; then
-                PS1+=" ${COL2}[${showenv}${COL2}]${ResetColour}"
+                PS1+=" ${COL2}[${showenv}${COL2}]${ResetColor}"
             fi
         done
     fi
@@ -95,14 +95,14 @@ function set_prompt_command {
                 if declare -F __ps1_git_fancy > /dev/null; then
                     local _git_ps1_output="$(__ps1_git_fancy)"
                     if [ -n "${_git_ps1_output}" ]; then
-                        PS1+=" ${COL2}[${git_colour}${_git_ps1_output}${COL2}]${ResetColour}"
+                        PS1+=" ${COL2}[${git_colour}${_git_ps1_output}${COL2}]${ResetColor}"
                     fi
                 fi
             else
                 if declare -F __ps1_git > /dev/null; then
                     local _git_ps1_output="$(__ps1_git '%s')"
                     if [ -n "${_git_ps1_output}" ]; then
-                        PS1+=" ${COL2}[${git_colour}${_git_ps1_output}${COL2}]${ResetColour}"
+                        PS1+=" ${COL2}[${git_colour}${_git_ps1_output}${COL2}]${ResetColor}"
                     fi
                 fi
             fi
@@ -116,13 +116,13 @@ function set_prompt_command {
         if [ ${prev_exit_code} -gt 128 -a ${prev_exit_code} -lt 192 ]; then
             local exit_status=$((128-prev_exit_code))" "$(kill -l ${prev_exit_code} 2>/dev/null || echo -n '?')
         fi
-        PS1+=" ${Red}${exit_status}${ResetColour} "
+        PS1+=" ${Red}${exit_status}${ResetColor} "
     fi
 
-    PS1+="${White}\\\$${ResetColour} "
+    PS1+="${White}\\\$${ResetColor} "
 
     # Secondary prompt (continuation lines)
-    PS2="${COL2}> ${ResetColour}"
+    PS2="${COL2}> ${ResetColor}"
     return $prev_exit_code
 }
 PROMPT_COMMAND=set_prompt_command
