@@ -5,7 +5,7 @@
 Run the below
 
 ```
-git clone https://github.com/ian-ozzie/ps1.git ~/.ps1
+git clone --recursive https://github.com/ian-ozzie/ps1.git ~/.ps1
 echo '[ -e $HOME/.ps1/ps1.bash ] && source $HOME/.ps1/ps1.bash' >> ~/.bashrc
 ```
 
