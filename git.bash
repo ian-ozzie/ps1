@@ -195,19 +195,30 @@ __ps1_git_fancy () {
         unset GIT_REMOTE
     fi
 
-    local GIT_UPSTREAM="${git_status_fields[2]}"
+    export GIT_BRANCH=$(__ps1_git_fancy_replaceSymbols "${git_status_fields[0]}")
+    local GIT_REMOTE="$(__ps1_git_fancy_replaceSymbols "${git_status_fields[1]}")"
+    if [[ "." == "${GIT_REMOTE}" ]]; then
+        unset GIT_REMOTE
+    fi
+
+    local GIT_REMOTE_USERNAME_REPO="$(__ps1_git_fancy_replaceSymbols "${git_status_fields[2]}")"
+    if [[ "." == "${GIT_REMOTE_USERNAME_REPO}" ]]; then
+        unset GIT_REMOTE_USERNAME_REPO
+    fi
+
+    local GIT_UPSTREAM="${git_status_fields[3]}"
     if [[ -z "${__GIT_PROMPT_SHOW_UPSTREAM}" || "^" == "$GIT_UPSTREAM" ]]; then
         unset GIT_UPSTREAM
     else
         GIT_UPSTREAM="${GIT_PROMPT_UPSTREAM//_UPSTREAM_/${GIT_UPSTREAM}}"
     fi
 
-    local GIT_STAGED=${git_status_fields[3]}
-    local GIT_CONFLICTS=${git_status_fields[4]}
-    local GIT_CHANGED=${git_status_fields[5]}
-    local GIT_UNTRACKED=${git_status_fields[6]}
-    local GIT_STASHED=${git_status_fields[7]}
-    local GIT_CLEAN=${git_status_fields[8]}
+    local GIT_STAGED="${git_status_fields[4]}"
+    local GIT_CONFLICTS="${git_status_fields[5]}"
+    local GIT_CHANGED="${git_status_fields[6]}"
+    local GIT_UNTRACKED="${git_status_fields[7]}"
+    local GIT_STASHED="${git_status_fields[8]}"
+    local GIT_CLEAN="${git_status_fields[9]}"
 
     local STATUS="${PS1_MODULE_GIT_PROMPT_BRANCH}${GIT_BRANCH}${ResetColor}"
 
